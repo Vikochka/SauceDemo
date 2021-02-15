@@ -1,7 +1,6 @@
 package Tests;
 
-import Pages.LoginPage;
-import Pages.ProductsPage;
+import Pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -13,6 +12,9 @@ public class BaseTest {
     WebDriver browser;
     LoginPage loginPage;
     ProductsPage productsPage;
+    CartPage cartPage;
+    CheckoutPage checkoutPage;
+    MenuPage menuPage;
 
     @BeforeMethod
     public void setup() {
@@ -22,6 +24,9 @@ public class BaseTest {
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPage(browser);
         productsPage = new ProductsPage(browser);
+        cartPage = new CartPage(browser);
+        checkoutPage = new CheckoutPage(browser);
+        menuPage =new MenuPage(browser);
     }
 
     @AfterMethod(alwaysRun = true)
