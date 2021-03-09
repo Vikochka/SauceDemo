@@ -1,7 +1,9 @@
 package Tests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(TestListener.class)
 public class CartTest extends BaseTest {
 
     @Test

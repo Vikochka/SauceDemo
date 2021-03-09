@@ -1,10 +1,13 @@
 package Pages;
 
-import Pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertEquals;
 
 public class LoginPage extends BasePage {
     public static final By LOGIN_INPUT = By.id("user-name");
@@ -17,8 +20,9 @@ public class LoginPage extends BasePage {
         super(browser);
     }
 
-    public void open() {
+    public BasePage open() {
         browser.get("https://www.saucedemo.com");
+        return this;
     }
 
     public void login(String userName, String password) {
@@ -32,7 +36,16 @@ public class LoginPage extends BasePage {
     }
 
     public void waitForLoginPage() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product_label")));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product_label")));
+        } catch (Exception ex) {
+            Assert.fail("Page was not opened");
+        }
     }
+     public void invisibilityOfErrorMessage(){
+        browser.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        int errorMessage = browser.findElements(ERROR_MESSAGE).size();
+        assertEquals(errorMessage,0,"Error message visibility");
+        browser.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+     }
 }

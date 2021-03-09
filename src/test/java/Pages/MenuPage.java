@@ -3,19 +3,19 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class MenuPage extends BasePage {
     public static final String MENU = "//*[text()='Open Menu']";
     public static final String MENU_BUTTONS = "//*[text()='%s']";
 
-//    public static final String ALL_ITEMS_BUTTON = "//*[text()='All Items']";
-//    public static final String ABOUT_BUTTON = "//*[text()='About']";
-//    public static final String LOGUOT_BUTTON = "//*[text()='Logout']";
-//    public static final String RESET_APP_STATE_BUTTON = "//*[text()='Reset App State']";
-
     public MenuPage(WebDriver browser) {
         super(browser);
+    }
+
+    @Override
+    public BasePage open() {
+        return this;
     }
 
     public void menuButtons(String buttonName) {
@@ -25,23 +25,34 @@ public class MenuPage extends BasePage {
     }
 
     public void waitForAllItems() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".peek")));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".peek")));
+        } catch (Exception ex) {
+            Assert.fail("ProductPage was not opened");
+        }
     }
 
     public void waitForAbout() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".is-1")));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".is-1")));
+        } catch (Exception ex) {
+            Assert.fail("AboutPage was not opened");
+        }
     }
 
     public void waitForLoguot() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
+        } catch (Exception ex) {
+            Assert.fail("LoginPage was not opened");
+        }
     }
 
     public void waitForResetAppState() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".cart_item")));
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".cart_item")));
+        } catch (Exception ex) {
+            Assert.fail("LoginPage was not opened");
+        }
     }
-
 }

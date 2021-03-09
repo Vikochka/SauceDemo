@@ -1,19 +1,26 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class CartPage extends BasePage {
 
     public static final String CHECK_CART = "//*[text()='%s']";
     public static final By CHECKOUT_BUTTON = By.cssSelector(".btn_action");
     public static final String REMOVE_BUTTON = "//*[text()='%s']/../.././/button";
-    public static final By CONTINUE_SHOPPING= By.xpath("//*[@class='cart_footer']/a[1]");
+    public static final By CONTINUE_SHOPPING = By.xpath("//*[@class='cart_footer']/a[1]");
 
     public CartPage(WebDriver browser) {
         super(browser);
+    }
+
+    @Override
+    public BasePage open() {
+        return this;
     }
 
     public void checkProduct(String checkProductName) {
@@ -21,6 +28,7 @@ public class CartPage extends BasePage {
     }
 
     public void setCheckoutButton() {
+        ((TakesScreenshot)browser).getScreenshotAs(OutputType.BYTES);
         browser.findElement(CHECKOUT_BUTTON).click();
     }
 
@@ -29,17 +37,23 @@ public class CartPage extends BasePage {
 
     }
 
-    public void continueShopping(){
+    public void continueShopping() {
         browser.findElement(CONTINUE_SHOPPING).click();
     }
 
     public void waitForCartPage() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn_primary")));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn_primary")));
+        } catch (Exception ex) {
+            Assert.fail("CartPage wasn't opened");
+        }
     }
 
     public void waitForContinueShopping() {
-        WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".peek")));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".peek")));
+        } catch (Exception ex) {
+            Assert.fail("ProductsPage wasn't opened");
+        }
     }
 }

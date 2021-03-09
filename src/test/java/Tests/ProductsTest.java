@@ -1,10 +1,12 @@
 package Tests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(TestListener.class)
 public class ProductsTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void productShouldBeAvailableCartTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -13,13 +15,14 @@ public class ProductsTest extends BaseTest {
         productsPage.goToShoppingCard();
         productsPage.waitForProductsPage();
     }
-}
 
-//    @Test
-//    public void productShouldBeAvailableInCart() {
-//        loginPage
-//                .open()
-//                .login("standard_user", "secret_sauce")
-//                .buyProduct("Sauce Labs Backpack")
-//                .buyProduct("Sauce Labs Bolt T-Shirt");
-//    }
+
+    @Test
+    public void productShouldBeAvailableInCart() {
+        loginPage
+                .open()
+                .login("standard_user", "secret_sauce") //cannot resolve method "login" in "BasePage"!!!!!!!!
+                .buyProduct("Sauce Labs Backpack")
+                .buyProduct("Sauce Labs Bolt T-Shirt");
+    }
+}
