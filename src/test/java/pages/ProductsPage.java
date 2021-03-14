@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,12 +14,13 @@ public class ProductsPage extends BasePage {
     }
 
     @Override
-    public BasePage open() {
+    public ProductsPage open() {
         return this;
     }
 
-    public void buyProduct(String productName) {
+    public ProductsPage buyProduct(String productName) {
         browser.findElement(By.xpath(String.format(ADD_TO_CARD, productName))).click();
+        return new ProductsPage(browser);
     }
 
     public void goToShoppingCard() {

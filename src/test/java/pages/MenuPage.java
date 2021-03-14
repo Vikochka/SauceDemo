@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +21,6 @@ public class MenuPage extends BasePage {
     public void menuButtons(String buttonName) {
         browser.findElement(By.xpath(MENU)).click();
         browser.findElement(By.xpath(String.format(MENU_BUTTONS, buttonName))).click();
-
     }
 
     public void waitForAllItems() {

@@ -1,14 +1,14 @@
-package Utils;
+package utils;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CapabilitiesGenerator {
 
     public static ChromeOptions getChromeOptions() {
-        String driverPath = "src/test/resources/";
+        String driverPath = "src/test/resources/";  //ПУТЬ К DRIVER
         ChromeOptions options = new ChromeOptions();
         String os = System.getProperty("os.name").toLowerCase();
-        System.out.println("Operational system: " + os + "; Driver path: " + driverPath);
+        System.out.println("Operational system: " + os + "; Driver path: " + driverPath);   //УЗНАЕМ КАКАЯ ОП.СИСТ
         if (os.contains("win")) {
             System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver.exe");
         } else if (os.contains("mac")) {
@@ -16,10 +16,10 @@ public class CapabilitiesGenerator {
         } else {
             System.setProperty("webdriver.chrome.driver", driverPath + "/linux/chromedriver");
         }
-        options.addArguments("--ignore-certificate-errors");//
-        options.addArguments("--disable-popup-blocking");//
+        options.addArguments("--ignore-certificate-errors");//ОБОЙТИ СЕРТИФИКАЦИЮ ЕСЛИ САЙТИ РАБОТАЕТ ЧЕРЕЗ HTTPS ПРОТОКОЛ,А НЕ ЧЕРЕЗ HTTP
+        options.addArguments("--disable-popup-blocking");// ИГНОРИРУЕТ ВСЕ ВСПЛЫВАЮЩИЕ ОКНА
         options.addArguments("--disable-notifications");//
-        options.addArguments("--headless"); // only if you are ACTUALLY running headless
+        //options.addArguments("--headless"); // only if you are ACTUALLY running headless //ЗАПУСКАЕТ ТЕСТЫ БЕЗ UI,ВКЛАДКА БРАУЗЕРА НЕВИДНА
 
         //options.addArguments("--no-sandbox"); //https://stackoverflow.com/a/50725918/1689770
         //options.addArguments("--disable-infobars"); //https://stackoverflow.com/a/43840128/1689770
@@ -29,5 +29,4 @@ public class CapabilitiesGenerator {
 
         return options;
     }
-
 }

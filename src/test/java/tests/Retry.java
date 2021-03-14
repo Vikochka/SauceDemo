@@ -1,5 +1,4 @@
-package Tests;
-
+package tests;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
@@ -25,6 +24,4 @@ public class Retry implements IRetryAnalyzer {
         }
         return false;
     }
-
 }
-

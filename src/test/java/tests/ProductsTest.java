@@ -1,4 +1,4 @@
-package Tests;
+package tests;
 
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -16,12 +16,11 @@ public class ProductsTest extends BaseTest {
         productsPage.waitForProductsPage();
     }
 
-
     @Test
     public void productShouldBeAvailableInCart() {
         loginPage
                 .open()
-                .login("standard_user", "secret_sauce") //cannot resolve method "login" in "BasePage"!!!!!!!!
+                .login("standard_user", "secret_sauce")
                 .buyProduct("Sauce Labs Backpack")
                 .buyProduct("Sauce Labs Bolt T-Shirt");
     }

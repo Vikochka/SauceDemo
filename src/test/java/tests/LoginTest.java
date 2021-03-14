@@ -1,4 +1,4 @@
-package Tests;
+package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -11,18 +11,17 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "Input for login")
     public Object[][] inputForLogin() {
         return new Object[][]{
-                {"standard_user", "123h","Epic sadface: Username and password do not match any user in this service"},
-                {"","dfdb","Epic sadface: Username is required"},
+                {"standard_user", "123h", "Epic sadface: Username and password do not match any user in this service"},
+                {"", "dfdb", "Epic sadface: Username is required"},
         };
     }
 
     @Test(dataProvider = "Input for login")
-    public void negativeLoginTest(String userName, String password,String errorMessage) {
+    public void negativeLoginTest(String userName, String password, String errorMessage) {
         loginPage.open();
-        loginPage.login(userName,password);
-        Assert.assertEquals(loginPage.getErrorMessage(),errorMessage, "no error message");
+        loginPage.login(userName, password);
+        Assert.assertEquals(loginPage.getErrorMessage(), errorMessage, "no error message");
     }
-
 
     @Test
     public void standardUserTest() {
@@ -36,8 +35,7 @@ public class LoginTest extends BaseTest {
     public void lockedOutUserTest() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
-        loginPage.invisibilityOfErrorMessage();
-        loginPage.waitForLoginPage();
+        loginPage.VisibilityOfErrorMessage();
     }
 
     @Test

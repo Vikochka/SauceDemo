@@ -1,7 +1,8 @@
-package Tests;
+package tests;
 
-import Pages.*;
-import Utils.CapabilitiesGenerator;
+import org.testng.ITestContext;
+import pages.*;
+import utils.CapabilitiesGenerator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
@@ -22,11 +23,12 @@ public class BaseTest {
     MenuPage menuPage;
 
     @BeforeMethod
-    public void setup(ITestResult testResult) {
+    public void setup(ITestContext iTestContext, ITestResult testResult) {
         browser = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        testResult.getTestContext().setAttribute("driver",browser);
+        iTestContext.setAttribute("driver",browser);
+ //       testResult.getTestContext().setAttribute("driver", browser);
         loginPage = new LoginPage(browser);
         loginPageFactory = new LoginPageFactory(browser);
         productsPage = new ProductsPage(browser);

@@ -1,10 +1,11 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -20,15 +21,16 @@ public class LoginPage extends BasePage {
         super(browser);
     }
 
-    public BasePage open() {
+    public LoginPage open() {
         browser.get("https://www.saucedemo.com");
         return this;
     }
 
-    public void login(String userName, String password) {
+    public ProductsPage login(String userName, String password) {
         browser.findElement(LOGIN_INPUT).sendKeys(userName);
         browser.findElement(PASSWORD_INPUT).sendKeys(password);
         browser.findElement(LOGIN_BUTTON).click();
+        return new ProductsPage(browser);
     }
 
     public String getErrorMessage() {
@@ -47,5 +49,13 @@ public class LoginPage extends BasePage {
         int errorMessage = browser.findElements(ERROR_MESSAGE).size();
         assertEquals(errorMessage,0,"Error message visibility");
         browser.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+     }
+
+     public void VisibilityOfErrorMessage(){
+        try {
+           boolean isLockedUserName = browser.findElement(ERROR_MESSAGE).isDisplayed();
+        }catch (NoSuchElementException ex){
+            System.out.println("Error message invisibility");
+        }
      }
 }

@@ -1,5 +1,6 @@
-package Tests;
+package tests;
 
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -37,20 +38,17 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
     }
 
-    //@Attachment(value = "Last screen state", type = "image/png")
+    @Attachment(value = "Last screen state", type = "image/png")
     private byte[] takeScreenshot(ITestContext iTestContext) {
         try {
             return ((TakesScreenshot) iTestContext.getAttribute("driver")).getScreenshotAs(OutputType.BYTES);

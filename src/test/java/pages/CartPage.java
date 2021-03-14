@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -28,7 +28,7 @@ public class CartPage extends BasePage {
     }
 
     public void setCheckoutButton() {
-        ((TakesScreenshot)browser).getScreenshotAs(OutputType.BYTES);
+        ((TakesScreenshot) browser).getScreenshotAs(OutputType.BYTES);
         browser.findElement(CHECKOUT_BUTTON).click();
     }
 

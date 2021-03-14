@@ -1,32 +1,35 @@
-package Tests;
+package tests;
 
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 @Listeners(TestListener.class)
-public class CheckOutTest extends BaseTest {
+public class CartTest extends BaseTest {
 
     @Test
-    public void checkOutTest() {
+    public void addElementTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.buyProduct("Sauce Labs Backpack");
         productsPage.buyProduct("Sauce Labs Bolt T-Shirt");
         productsPage.goToShoppingCard();
+        cartPage.checkProduct("Sauce Labs Backpack");
+        cartPage.checkProduct("Sauce Labs Bolt T-Shirt");
         cartPage.setCheckoutButton();
-        checkoutPage.checkout("Vasia", "Pupkin", "12345");
-        checkoutPage.waitForChekOutPage();
+        cartPage.waitForCartPage();
     }
 
     @Test
-    public void emptyFormTest() {
+    public void removeTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.buyProduct("Sauce Labs Backpack");
         productsPage.buyProduct("Sauce Labs Bolt T-Shirt");
         productsPage.goToShoppingCard();
-        cartPage.setCheckoutButton();
-        checkoutPage.checkout("", "", "");
-        checkoutPage.getErrorCheckOutMessage();
+        cartPage.checkProduct("Sauce Labs Backpack");
+        cartPage.checkProduct("Sauce Labs Bolt T-Shirt");
+        cartPage.removeProduct("Sauce Labs Bolt T-Shirt");
+        cartPage.continueShopping();
+        cartPage.waitForContinueShopping();
     }
 }

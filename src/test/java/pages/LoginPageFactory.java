@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -47,11 +47,4 @@ public class LoginPageFactory extends BasePage {
             Assert.fail("Page was not opened");
         }
     }
-
-//    public void invisibilityOfErrorMessage() {
-//        browser.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-//        int errorMessage = browser.findElements(ERROR_MESSAGE).size();
-//        assertEquals(errorMessage, 0, "Error message visibility");
-//        browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//    }
 }

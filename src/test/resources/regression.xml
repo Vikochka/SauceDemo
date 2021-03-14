@@ -3,16 +3,16 @@
 <suite name="Regression Test" parallel="tests" thread-count="2">
     <test name="test 1">
         <classes>
-            <class name="Tests.LoginTest" />
-            <class name="Tests.CheckOutTest"></class>
-            <class name="Tests.MenuTest"></class>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CheckOutTest"></class>
+            <class name="tests.MenuTest"></class>
 
         </classes>
     </test> <!-- Test -->
     <test name="test 2">
         <classes>
-            <class name="Tests.ProductsTest" />
-            <class name="Tests.CartTest"></class>
+            <class name="tests.ProductsTest"/>
+            <class name="tests.CartTest"></class>
         </classes>
     </test> <!-- Test -->
 </suite>
