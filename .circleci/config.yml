@@ -4,7 +4,7 @@
 # https://circleci.com/docs/2.0/browser-testing/#selenium
 version: 2 #синтаксис
 jobs: #oписание массива jobs
-  ui-tests: # моно переименовать в любую другую,ВЕЗДЕ
+  ui-tests: # можно переименовать в любую другую,ВЕЗДЕ
     docker:
       - image: circleci/openjdk:8u265-jdk-browsers #тут будет браузер с браузерами
     working_directory: ~/repo #
