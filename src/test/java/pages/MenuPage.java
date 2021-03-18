@@ -39,7 +39,7 @@ public class MenuPage extends BasePage {
         }
     }
 
-    public void waitForLoguot() {
+    public void waitForLogout() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         } catch (Exception ex) {

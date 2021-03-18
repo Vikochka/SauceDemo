@@ -4,16 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+
 import static org.testng.Assert.assertEquals;
 
 public class LoginPage extends BasePage {
+
     public static final By LOGIN_INPUT = By.id("user-name");
     public static final By PASSWORD_INPUT = By.id("password");
     public static final By LOGIN_BUTTON = By.id("login-button");
     public static final By ERROR_MESSAGE = By.cssSelector("[data-test=error]");
-
 
     public LoginPage(WebDriver browser) {
         super(browser);
@@ -42,18 +44,19 @@ public class LoginPage extends BasePage {
             Assert.fail("Page was not opened");
         }
     }
-     public void invisibilityOfErrorMessage(){
+
+    public void invisibilityOfErrorMessage() {
         browser.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         int errorMessage = browser.findElements(ERROR_MESSAGE).size();
-        assertEquals(errorMessage,0,"Error message visibility");
-        browser.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-     }
+        assertEquals(errorMessage, 0, "Error message visibility");
+        browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
 
-     public void VisibilityOfErrorMessage(){
+    public void VisibilityOfErrorMessage() {
         try {
-           boolean isLockedUserName = browser.findElement(ERROR_MESSAGE).isDisplayed();
-        }catch (NoSuchElementException ex){
+            boolean isLockedUserName = browser.findElement(ERROR_MESSAGE).isDisplayed();
+        } catch (NoSuchElementException ex) {
             System.out.println("Error message invisibility");
         }
-     }
+    }
 }

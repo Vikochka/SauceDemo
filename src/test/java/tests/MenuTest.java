@@ -26,7 +26,7 @@ public class MenuTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         menuPage.menuButtons("Logout");
-        menuPage.waitForLoguot();
+        menuPage.waitForLogout();
     }
 
     @Test
