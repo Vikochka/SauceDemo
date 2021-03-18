@@ -14,7 +14,7 @@ public class CapabilitiesGenerator {
         } else if (os.contains("mac")) {
             System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver");
         } else {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/linux/chromedriver");
+            System.setProperty("webdriver.chrome.driver", driverPath + "linux/chromedriver");
         }
         options.addArguments("--ignore-certificate-errors");//ОБОЙТИ СЕРТИФИКАЦИЮ ЕСЛИ САЙТИ РАБОТАЕТ ЧЕРЕЗ HTTPS ПРОТОКОЛ,А НЕ ЧЕРЕЗ HTTP
         options.addArguments("--disable-popup-blocking");// ИГНОРИРУЕТ ВСЕ ВСПЛЫВАЮЩИЕ ОКНА

@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
-
 import static org.testng.Assert.assertEquals;
 
 public class LoginPage extends BasePage {

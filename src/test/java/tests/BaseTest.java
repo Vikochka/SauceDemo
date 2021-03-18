@@ -16,21 +16,18 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     WebDriver browser;
     LoginPage loginPage;
-    LoginPageFactory loginPageFactory;
     ProductsPage productsPage;
     CartPage cartPage;
     CheckoutPage checkoutPage;
     MenuPage menuPage;
 
     @BeforeMethod
-    public void setup(ITestContext iTestContext, ITestResult testResult) {
+    public void setup(ITestContext iTestContext) {
         browser = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         iTestContext.setAttribute("driver",browser);
- //       testResult.getTestContext().setAttribute("driver", browser);
         loginPage = new LoginPage(browser);
-        loginPageFactory = new LoginPageFactory(browser);
         productsPage = new ProductsPage(browser);
         cartPage = new CartPage(browser);
         checkoutPage = new CheckoutPage(browser);
