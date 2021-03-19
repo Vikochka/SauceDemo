@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
@@ -16,14 +17,15 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "Input for login")
+    @Test(dataProvider = "Input for login",retryAnalyzer = Retry.class)
     public void negativeLoginTest(String userName, String password, String errorMessage) {
         loginPage.open();
         loginPage.login(userName, password);
         Assert.assertEquals(loginPage.getErrorMessage(), errorMessage, "no error message");
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
+    @Description("Check login: standard_user for login ")
     public void standardUserTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -31,14 +33,16 @@ public class LoginTest extends BaseTest {
         loginPage.waitForLoginPage();
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
+    @Description("Check login: locked_out_user for login ")
     public void lockedOutUserTest() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
         loginPage.VisibilityOfErrorMessage();
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
+    @Description("Check login: problem_user for login ")
     public void problemUserTest() {
         loginPage.open();
         loginPage.login("problem_user", "secret_sauce");
@@ -46,7 +50,8 @@ public class LoginTest extends BaseTest {
         loginPage.waitForLoginPage();
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
+    @Description("Check login: performance_glitch_user for login ")
     public void performanceGlitchUserTest() {
         loginPage.open();
         loginPage.login("performance_glitch_user", "secret_sauce");

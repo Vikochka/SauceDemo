@@ -8,6 +8,10 @@ import org.testng.Assert;
 public class MenuPage extends BasePage {
     public static final String MENU = "//*[text()='Open Menu']";
     public static final String MENU_BUTTONS = "//*[text()='%s']";
+    public static final By PEEK_LABEL = By.cssSelector(".peek");
+    public static final By ABOUT_LABEL = By.cssSelector(".is-1");
+    public static final By LOGOUT_LABEL = By.id("user-name");
+    public static final By RESET_APP_STATE_LABEL = By.cssSelector(".cart_item");
 
     public MenuPage(WebDriver browser) {
         super(browser);
@@ -25,7 +29,7 @@ public class MenuPage extends BasePage {
 
     public void waitForAllItems() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".peek")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(PEEK_LABEL));
         } catch (Exception ex) {
             Assert.fail("ProductPage was not opened");
         }
@@ -33,7 +37,7 @@ public class MenuPage extends BasePage {
 
     public void waitForAbout() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".is-1")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ABOUT_LABEL));
         } catch (Exception ex) {
             Assert.fail("AboutPage was not opened");
         }
@@ -41,7 +45,7 @@ public class MenuPage extends BasePage {
 
     public void waitForLogout() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_LABEL));
         } catch (Exception ex) {
             Assert.fail("LoginPage was not opened");
         }
@@ -49,7 +53,7 @@ public class MenuPage extends BasePage {
 
     public void waitForResetAppState() {
         try {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".cart_item")));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(RESET_APP_STATE_LABEL));
         } catch (Exception ex) {
             Assert.fail("LoginPage was not opened");
         }

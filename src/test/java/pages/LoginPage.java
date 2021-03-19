@@ -16,6 +16,7 @@ public class LoginPage extends BasePage {
     public static final By PASSWORD_INPUT = By.id("password");
     public static final By LOGIN_BUTTON = By.id("login-button");
     public static final By ERROR_MESSAGE = By.cssSelector("[data-test=error]");
+    public static final By PRODUCT_LABEL =By.cssSelector(".product_label");
 
     public LoginPage(WebDriver browser) {
         super(browser);
@@ -39,7 +40,7 @@ public class LoginPage extends BasePage {
 
     public void waitForLoginPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product_label")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_LABEL));
         } catch (Exception ex) {
             Assert.fail("Page was not opened");
         }

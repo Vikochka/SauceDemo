@@ -14,6 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
 public class BaseTest {
+    String login ="standard_user";
+    String password ="secret_sauce";
+
     WebDriver browser;
     LoginPage loginPage;
     ProductsPage productsPage;
