@@ -7,7 +7,7 @@ jobs: #oписание массива jobs
   ui-tests: # можно переименовать в любую другую,ВЕЗДЕ
     docker:
       - image: circleci/openjdk:8u265-jdk-browsers #тут будет браузер с браузерами
-    working_directory: ~/repo #
+    working_directory: ~/repo #домашняя папка
     environment:
     # get from git and get maven dependencies
     steps:
@@ -23,15 +23,15 @@ jobs: #oписание массива jobs
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run:
-          name: Get chrome version
-          command: google-chrome --version
+      - run: #запустить что ?
+          name: Get chrome version #
+          command: google-chrome --version # узнаем версию хрома
       - run:
           name: Setting chmod for Chrome
-          command: chmod 777 src/test/resources/linux/chromedriver
+          command: chmod 777 src/test/resources/linux/chromedriver #права доступа,нужна для того чтобы разрешить всем пользователям запускать хромдрайвер
       - run:
-          name: Running tests
-          command: mvn clean install
+          name: Running tests #
+          command: mvn clean install -DtrimStackTrace=false #то же самаое что и maven -> clean -> test
       - run:
           name: Generate allure report
           command: mvn allure:report
@@ -39,17 +39,17 @@ jobs: #oписание массива jobs
       - store_test_results:
           path: target/surefire-reports/junitreports
           when: always
-      - store_artifacts:
+      - store_artifacts: #любой артифакт с помощью этой команды можно что-то выпихнуть наружу
           path: target/site/allure-maven-plugin/
-workflows:
+workflows: #последовательность джобов, здесь могут быть пайплайны
   version: 2
   commit:
     jobs:
       - ui-tests
   periodical:
     triggers:
-      - schedule:
-          cron: "1 4,8,12 * * *"
+      - schedule: #расписание
+          cron: "1 4,8,12 * * *" #способ задания времени
           filters:
             branches:
               only:

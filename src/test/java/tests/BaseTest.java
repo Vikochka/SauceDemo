@@ -5,17 +5,18 @@ import pages.*;
 import utils.CapabilitiesGenerator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-    String login ="standard_user";
-    String password ="secret_sauce";
+    public String login = "standard_user";
+    public String password = "secret_sauce";
+    public String user;
 
     WebDriver browser;
     LoginPage loginPage;
@@ -29,7 +30,10 @@ public class BaseTest {
         browser = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        iTestContext.setAttribute("driver",browser);
+        iTestContext.setAttribute("driver", browser);
+        user = System.getenv().getOrDefault("user", PropertyReader.getProperty("user"));
+        password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
+
         loginPage = new LoginPage(browser);
         productsPage = new ProductsPage(browser);
         cartPage = new CartPage(browser);
