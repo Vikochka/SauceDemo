@@ -13,6 +13,8 @@ public class CartPage extends BasePage {
     public static final By CHECKOUT_BUTTON = By.cssSelector(".btn_action");
     public static final String REMOVE_BUTTON = "//*[text()='%s']/../.././/button";
     public static final By CONTINUE_SHOPPING = By.xpath("//*[@class='cart_footer']/a[1]");
+    public static final By CONTINUE_BUTTON =By.cssSelector(".btn_primary");
+    public static final By PEEK_LABEL= By.cssSelector(".peek");
 
     public CartPage(WebDriver browser) {
         super(browser);
@@ -43,7 +45,7 @@ public class CartPage extends BasePage {
 
     public void waitForCartPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn_primary")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_BUTTON));
         } catch (Exception ex) {
             Assert.fail("CartPage wasn't opened");
         }
@@ -51,7 +53,7 @@ public class CartPage extends BasePage {
 
     public void waitForContinueShopping() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".peek")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(PEEK_LABEL));
         } catch (Exception ex) {
             Assert.fail("ProductsPage wasn't opened");
         }

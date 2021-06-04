@@ -11,11 +11,12 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertEquals;
 
 public class LoginPage extends BasePage {
+
     public static final By LOGIN_INPUT = By.id("user-name");
     public static final By PASSWORD_INPUT = By.id("password");
     public static final By LOGIN_BUTTON = By.id("login-button");
     public static final By ERROR_MESSAGE = By.cssSelector("[data-test=error]");
-
+    public static final By PRODUCT_LABEL =By.cssSelector(".product_label");
 
     public LoginPage(WebDriver browser) {
         super(browser);
@@ -39,23 +40,24 @@ public class LoginPage extends BasePage {
 
     public void waitForLoginPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product_label")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_LABEL));
         } catch (Exception ex) {
             Assert.fail("Page was not opened");
         }
     }
-     public void invisibilityOfErrorMessage(){
+
+    public void invisibilityOfErrorMessage() {
         browser.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         int errorMessage = browser.findElements(ERROR_MESSAGE).size();
-        assertEquals(errorMessage,0,"Error message visibility");
-        browser.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-     }
+        assertEquals(errorMessage, 0, "Error message visibility");
+        browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
 
-     public void VisibilityOfErrorMessage(){
+    public void VisibilityOfErrorMessage() {
         try {
-           boolean isLockedUserName = browser.findElement(ERROR_MESSAGE).isDisplayed();
-        }catch (NoSuchElementException ex){
+            boolean isLockedUserName = browser.findElement(ERROR_MESSAGE).isDisplayed();
+        } catch (NoSuchElementException ex) {
             System.out.println("Error message invisibility");
         }
-     }
+    }
 }

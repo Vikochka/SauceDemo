@@ -8,6 +8,7 @@ import org.testng.Assert;
 public class ProductsPage extends BasePage {
     public static final String ADD_TO_CARD = "//*[text()='%s']/ancestor::*[contains(@class,'inventory_item')]//button";
     public static final By SHOPPING_CARD_BUTTON = By.xpath("//*[@class='app_logo']/../..//*[@fill='currentColor']");
+    public static final By CART_PAGE_LABEL = By.cssSelector(".subheader");
 
     public ProductsPage(WebDriver browser) {
         super(browser);
@@ -29,7 +30,7 @@ public class ProductsPage extends BasePage {
 
     public void waitForProductsPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart_contents_container")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(CART_PAGE_LABEL));
         } catch (Exception ex) {
             Assert.fail("CartPage was not opened");
         }

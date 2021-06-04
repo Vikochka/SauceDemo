@@ -12,6 +12,7 @@ public class CheckoutPage extends BasePage {
     public static final By POSTAL_COD_INPUT = By.id("postal-code");
     public static final By CONTINUE_BUTTON = By.cssSelector(".cart_button");
     public static final By ERROR_CHECKOUT_MESSAGE = By.xpath("//*[@id='checkout_info_container']/div/form/h3");
+    public static final By ITEM_TOTAL = By.cssSelector(".summary_subtotal_label");
 
     public CheckoutPage(WebDriver browser) {
         super(browser);
@@ -35,7 +36,7 @@ public class CheckoutPage extends BasePage {
 
     public void waitForChekOutPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".summary_subtotal_label")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ITEM_TOTAL));
         } catch (Exception ex) {
             Assert.fail("Page wasn't opened");
         }
